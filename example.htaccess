@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+  Options +FollowSymlinks -MultiViews
+  RewriteEngine On
+  RewriteBase /
+  
+  # Rewrite /bdwp/static/ready.js to /bdwp/public/static/ready.js if it's an existing file
+  RewriteCond %{REQUEST_URI} ^/bdwp/(.*)$
+  RewriteCond %{DOCUMENT_ROOT}/bdwp/public/%1 -f
+  RewriteRule ^(.*)$ /bdwp/public/$1 [L]
+
+  # Rewrite /bdwp/hello to /bdwp/public/index.php/hello for non-existing files
+  RewriteCond %{REQUEST_URI} ^/bdwp/(.*)$
+  RewriteCond %{DOCUMENT_ROOT}/bdwp/public/%1 !-f
+  RewriteRule ^(.*)$ /bdwp/public/index.php/$1 [L]
+</IfModule>
