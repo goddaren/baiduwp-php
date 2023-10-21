@@ -14,6 +14,7 @@ addEventListener('DOMContentLoaded', function () {
 	});
 
 });
+var rootPath = window.location.pathname.split('http')[0].slice(0,-1);
 function http_build_query(params, numeric_prefix, arg_separator) {
 	let value, key, tmp = [];
 	const _http_build_query_helper = (key, val, arg_separator) => {
@@ -242,6 +243,7 @@ function makeQRCode(element, text, size = 512, correctLevel = QRCode.CorrectLeve
 }
 
 async function getAPI(method) { // 获取 API 数据
+	method = rootPath + method;
 	try {
 		const response = await fetch(method, { // fetch API
 			headers: new Headers({
@@ -306,7 +308,7 @@ async function OpenRoot(surl, pwd, password = "") {
 			pwd,
 			password
 		}
-		await fetch(`/parse/list`, { // fetch API
+		await fetch(`${rootPath}/parse/list`, { // fetch API
 			credentials: 'same-origin',
 			method: 'POST',
 			body: http_build_query(data),
@@ -352,7 +354,7 @@ async function OpenDir(path) {
 			dir: path,
 			...files.dirdata
 		}
-		await fetch(`/parse/list`, { // fetch API
+		await fetch(`${rootPath}/parse/list`, { // fetch API
 			credentials: 'same-origin',
 			method: 'POST',
 			body: http_build_query(data),
@@ -460,7 +462,7 @@ async function Download(index = 0) {
 	}
 
 	try {
-		await fetch(`/parse/link`, { // fetch API
+		await fetch(`${rootPath}/parse/link`, { // fetch API
 			credentials: 'same-origin',
 			method: 'POST',
 			body: http_build_query(data),
