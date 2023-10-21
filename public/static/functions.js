@@ -14,7 +14,7 @@ addEventListener('DOMContentLoaded', function () {
 	});
 
 });
-var rootPath = window.location.pathname.split('http')[0].slice(0,-1);
+var rootPath = window.location.pathname.slice(0,-1);
 function http_build_query(params, numeric_prefix, arg_separator) {
 	let value, key, tmp = [];
 	const _http_build_query_helper = (key, val, arg_separator) => {
