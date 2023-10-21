@@ -650,7 +650,7 @@
             if (result.isConfirmed) {
                 Swal.fire("正在删除，请稍等");
                 Swal.showLoading();
-                fetch(`/admin/${path}/delete/${id}`, {
+                fetch(`${rootPath}/admin/${path}/delete/${id}`, {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
